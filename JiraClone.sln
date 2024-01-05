@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraClone.API", "JiraClone.API\JiraClone.API.csproj", "{3662B5B2-AC33-449F-BAC4-986A01041A6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraClone.API", "JiraClone.API\JiraClone.API.csproj", "{3662B5B2-AC33-449F-BAC4-986A01041A6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraClone.Service", "JiraClone.Service\JiraClone.Service.csproj", "{08EE0408-6327-4391-91A2-68CEC4AAC8B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraClone.Service", "JiraClone.Service\JiraClone.Service.csproj", "{08EE0408-6327-4391-91A2-68CEC4AAC8B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraClone.Data", "JiraClone.Data\JiraClone.Data.csproj", "{AB5BF66B-F3F9-4FED-81C2-46B557B2711D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraClone.Data", "JiraClone.Data\JiraClone.Data.csproj", "{AB5BF66B-F3F9-4FED-81C2-46B557B2711D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{E613EACF-E72D-400B-9CA0-2490E8BD9B7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraClone.Utils.Common", "JiraClone.Utils.Common\JiraClone.Utils.Common.csproj", "{2637B881-3DC4-4ED5-8146-A3F9BFB8604A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraClone.Utils.Common", "JiraClone.Utils.Common\JiraClone.Utils.Common.csproj", "{2637B881-3DC4-4ED5-8146-A3F9BFB8604A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraClone.Client", "JiraClone.Client\JiraClone.Client.csproj", "{D008322E-5555-4068-926E-B97354CA2F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraClone.Client", "JiraClone.Client\JiraClone.Client.csproj", "{D008322E-5555-4068-926E-B97354CA2F01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

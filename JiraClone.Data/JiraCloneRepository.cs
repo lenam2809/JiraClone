@@ -10,7 +10,7 @@ namespace JiraClone.Data
 {
     public class JiraCloneRepository : Repository<JiraCloneDbContext, User, int>
     {
-        public EPSRepository(JiraCloneDbContext dbContext, IUserIdentity<int> currentUser, ILogger<JiraCloneRepository> logger) : base(dbContext, currentUser, logger)
+        public JiraCloneRepository(JiraCloneDbContext dbContext, IUserIdentity<int> currentUser, ILogger<JiraCloneRepository> logger) : base(dbContext, currentUser, logger)
         {
 
         }

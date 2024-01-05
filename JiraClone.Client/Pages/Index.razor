@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject HttpClient Http
 
 <PageTitle>Index</PageTitle>
 
@@ -7,3 +8,52 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<EditForm Model="@todo" OnSubmit="@HandleValidSubmit">
+    <div class="form-group m-3">
+        <label for="todo-item">To do: </label>
+        <InputText id="todo-item" @bind-Value="@todo.Title"></InputText>
+    </div>
+    <div class="form-group m-3">
+        <label for="todo-item">Due date:</label>
+        <InputDate id="todo-date" @bind-Value="@todo.Due"></InputDate>
+    </div>
+    <div class="form-group m-3">
+        <label for="todo-important">Important:</label>
+        <InputCheckbox id="todo-important" @bind-Value="@todo.Important"></InputCheckbox>
+    </div>
+    <div class="form-group m-3">
+        <label for="todo-complete">Complete:</label>
+        <InputCheckbox id="todo-complete" @bind-Value="@todo.Complete"></InputCheckbox>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    private ToDo todo = new ToDo();
+
+    protected async Task HandleValidSubmit()
+    {
+        HttpResponseMessage response = await Http.PostAsJsonAsync("api/ToDo", todo);
+
+        if (response.IsSuccessStatusCode)
+        {
+            todo = new ToDo();
+        }
+        else
+        {
+            string errorResponse = await response.Content.ReadAsStringAsync();
+        }
+    }
+
+    public class ToDo
+    {
+        public string Title { get; set; } = "";
+        public DateTime Due { get; set; }
+        public bool Important { get; set; }
+        public bool Complete { get; set; }
+    }
+}
+

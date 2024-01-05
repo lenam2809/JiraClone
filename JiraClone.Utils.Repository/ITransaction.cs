@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JiraClone.Data
+namespace JiraClone.Utils.Repository
 {
-    public class LookupService
+    public interface ITransaction : IDisposable
     {
+        void Commit();
+        void Rollback();
     }
 }

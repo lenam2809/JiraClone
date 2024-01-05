@@ -1,8 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using JiraClone.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace JiraClone.Data
@@ -17,5 +21,10 @@ namespace JiraClone.Data
             : base(options)
         {
         }
+
+        public virtual DbSet<IdentityClient> IdentityClients { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserDetail> UserDetail { get; set; }
+        public virtual DbSet<GroupUser> GroupUser { get; set; }
     }
 }

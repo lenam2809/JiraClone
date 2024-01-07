@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JiraClone.Data\JiraClone.Data.csproj" />
+    <ProjectReference Include="..\JiraClone.Utils.BaseService\JiraClone.Utils.BaseService.csproj" />
     <ProjectReference Include="..\JiraClone.Utils.Repository\JiraClone.Utils.Repository.csproj" />
   </ItemGroup>
 

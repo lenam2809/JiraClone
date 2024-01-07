@@ -1,4 +1,7 @@
 using JiraClone.Data;
+using JiraClone.Service.Profiles;
+using JiraClone.Service.Services;
+using JiraClone.Utils.BaseService;
 using JiraClone.Utils.Repository;
 using JiraClone.Utils.UnitOfWork;
 using MediatR;
@@ -13,6 +16,8 @@ builder.Services.AddDbContext<JiraCloneDbContext>(options =>
 );
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddAutoMapper(typeof(RoleService));
+AutoMapperConfig.RegisterMappings(builder.Services);
 
 
 builder.Services.AddControllers();

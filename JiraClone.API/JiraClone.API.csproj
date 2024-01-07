@@ -13,14 +13,12 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\JiraClone.Data\JiraClone.Data.csproj" />
     <ProjectReference Include="..\JiraClone.Service\JiraClone.Service.csproj" />
     <ProjectReference Include="..\JiraClone.Utils.Repository\JiraClone.Utils.Repository.csproj" />
-    <ProjectReference Include="..\JiraClone.Utils.UnitOfWork\JiraClone.Utils.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>

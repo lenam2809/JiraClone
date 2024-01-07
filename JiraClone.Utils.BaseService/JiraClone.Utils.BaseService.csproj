@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JiraClone.Utils.UnitOfWork\JiraClone.Utils.UnitOfWork.csproj" />
+    <ProjectReference Include="..\JiraClone.Utils.Repository\JiraClone.Utils.Repository.csproj" />
   </ItemGroup>
 
 </Project>

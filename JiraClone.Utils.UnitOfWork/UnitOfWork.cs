@@ -19,7 +19,9 @@ namespace JiraClone.Utils.UnitOfWork
             _repositories = new Dictionary<Type, object>();
         }
 
-        public IRepository<TEntity, TDto> GetRepository<TEntity, TDto>() where TEntity : class where TDto : class
+        public IRepository<TEntity, TDto> GetRepository<TEntity, TDto>() 
+            where TEntity : class 
+            where TDto : class
         {
             var type = typeof(IRepository<TEntity, TDto>);
             if (!_repositories.ContainsKey(type))

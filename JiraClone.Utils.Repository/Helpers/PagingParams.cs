@@ -5,17 +5,17 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JiraClone.Service.Helpers
+namespace JiraClone.Utils.Repository.Helpers
 {
     public class PagingParams<TDto>
     {
         public static int DefaultPageSize = 10;
 
-        public string SortExpression => (string.IsNullOrEmpty(SortBy) ? "ID" : SortBy) + " " + (SortDesc ? "desc" : "asc");
+        //public string SortExpression => (string.IsNullOrEmpty(SortBy) ? "ID" : SortBy) + " " + (SortDesc ? "desc" : "asc");
+        public Expression<Func<TDto, object>> SortExpression { get; set; } // Change object to your actual sort type
+        public SortDirection SortDirection { get; set; }
 
         public string SortBy { get; set; }
-
-        public bool SortDesc { get; set; }
 
         public int ItemsPerPage { get; set; }
 
@@ -28,8 +28,8 @@ namespace JiraClone.Service.Helpers
         public PagingParams()
         {
             SortBy = "Id";
-            SortDesc = true;
             ItemsPerPage = DefaultPageSize;
+            SortDirection = SortDirection.Descending;
             Page = 0;
         }
 
@@ -37,5 +37,11 @@ namespace JiraClone.Service.Helpers
         {
             return new List<Expression<Func<TDto, bool>>>();
         }
+    }
+
+    public enum SortDirection
+    {
+        Ascending,
+        Descending
     }
 }

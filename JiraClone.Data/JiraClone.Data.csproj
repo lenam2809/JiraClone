@@ -24,4 +24,8 @@
     <ProjectReference Include="..\JiraClone.Utils.Common\JiraClone.Utils.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
 </Project>

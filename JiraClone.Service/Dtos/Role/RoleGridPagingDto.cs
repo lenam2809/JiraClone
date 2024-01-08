@@ -24,21 +24,4 @@ namespace JiraClone.Service.Dtos.Role
             return predicates;
         }
     }
-
-    public class RolePerGridPagingDto : PagingParams<RolePerGridDto>
-    {
-        public string FilterText { get; set; }
-        public int GroupId { get; set; }
-        public override List<Expression<Func<RolePerGridDto, bool>>> GetPredicates()
-        {
-            var predicates = base.GetPredicates();
-
-            if (!string.IsNullOrEmpty(FilterText))
-            {
-                predicates.Add(x => x.Name.Contains(FilterText.Trim()) || x.Description.Contains(FilterText.Trim()));
-            }
-
-            return predicates;
-        }
-    }
 }

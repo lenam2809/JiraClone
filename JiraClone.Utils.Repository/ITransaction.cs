@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JiraClone.Utils.Repository.Transaction
+namespace JiraClone.Utils.Repository
 {
     public interface ITransaction : IDisposable
     {

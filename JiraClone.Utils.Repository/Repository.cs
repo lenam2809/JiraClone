@@ -1,5 +1,4 @@
 ﻿using JiraClone.Utils.Repository.Helpers;
-using JiraClone.Utils.Repository.Transaction;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JiraClone.Utils.Repository.Repository
+namespace JiraClone.Utils.Repository
 {
     public class Repository<TContext> : IRepository where TContext : DbContext, new()
     {
@@ -358,7 +357,7 @@ namespace JiraClone.Utils.Repository.Repository
         public virtual int Delete<TEntity>(params Expression<Func<TEntity, bool>>[] predicates)
             where TEntity : class
         {
-            var entiteis = Filter<TEntity>(predicates);
+            var entiteis = Filter(predicates);
             foreach (var entity in entiteis)
             {
                 if (entity is ICascadeDelete<TContext>)
@@ -429,7 +428,7 @@ namespace JiraClone.Utils.Repository.Repository
         public async virtual Task<int> DeleteAsync<TEntity>(params Expression<Func<TEntity, bool>>[] predicates)
             where TEntity : class
         {
-            var entities = Filter<TEntity>(predicates);
+            var entities = Filter(predicates);
             foreach (var entity in entities)
             {
                 if (entity is ICascadeDelete<TContext>)
@@ -474,7 +473,7 @@ namespace JiraClone.Utils.Repository.Repository
         public TDbContext GetDbContext<TDbContext>()
             where TDbContext : class
         {
-            return this._dbContext as TDbContext;
+            return _dbContext as TDbContext;
         }
 
         public virtual ITransaction BeginTransaction()

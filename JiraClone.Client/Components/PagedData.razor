@@ -1,16 +1,22 @@
-﻿<h3>Paged Data Display</h3>
+﻿@using JiraClone.Service.Dtos.Role;
+@using JiraClone.Utils.Repository.Helpers;
+@inject HttpClient httpClient
+
+
+
+<h3>Paged Data Display</h3>
 
 <table class="table">
     <thead>
         <!-- Your table headers -->
     </thead>
     <tbody>
-        @foreach (var item in PagedData?.Items)
+        @foreach (var item in Items?.Data)
         {
             <tr>
                 <!-- Display item properties -->
-                <td>@item.Property1</td>
-                <td>@item.Property2</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
                 <!-- Add more columns for other properties -->
             </tr>
         }
@@ -24,11 +30,11 @@
 </div>
 
 @code {
-    RoleGridPagingDto<RoleGridDto> PagedData;
+    PagingResult<RoleGridDto> Items;
     int CurrentPage = 1;
     int PageSize = 10; // Set your desired page size
     bool IsPreviousDisabled => CurrentPage == 1;
-    bool IsNextDisabled => PagedData?.TotalItems <= CurrentPage * PageSize;
+    bool IsNextDisabled => Items?.TotalRows <= CurrentPage * PageSize;
 
     protected override async Task OnInitializedAsync()
     {
@@ -37,7 +43,34 @@
 
     private async Task LoadPagedData()
     {
-        PagedData = await ProductService.GetPagedResultAsync(CurrentPage, PageSize);
+        try
+        {
+            // Create RoleGridPagingDto object
+            var pagingModel = new RoleGridPagingDto(); // You may need to populate this object with necessary data
+
+            // Make GET request to the API endpoint
+            var response = await httpClient.GetAsync("your_api_endpoint_here");
+
+            // Check if the request was successful
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize the response content
+                Items = await response.Content.ReadAsAsync<RoleGridDto>(); // Change RoleGridDto to your actual DTO
+
+                // Process the retrieved data (content)
+                // Do something with the retrieved data
+            }
+            else
+            {
+                // Handle unsuccessful response (e.g., log error, display error message)
+                // Example: var errorMessage = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions
+            // Example: Log the exception
+        }
     }
 
     private async Task LoadPreviousPage()

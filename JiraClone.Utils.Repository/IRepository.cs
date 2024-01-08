@@ -1,11 +1,10 @@
 ﻿using JiraClone.Utils.Repository.Helpers;
-using JiraClone.Utils.Repository.Transaction;
 using System.Data;
 using System.Linq.Expressions;
 
-namespace JiraClone.Utils.Repository.Repository
+namespace JiraClone.Utils.Repository
 {
-    public interface IRepository: IDisposable
+    public interface IRepository : IDisposable
     {
         IQueryable<TEntity> All<TEntity>() where TEntity : class;
         ITransaction BeginTransaction();

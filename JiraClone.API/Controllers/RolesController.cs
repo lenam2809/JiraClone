@@ -2,7 +2,6 @@
 using JiraClone.Data.Entities;
 using JiraClone.Data.Enums;
 using JiraClone.Service.Dtos.Role;
-using JiraClone.Service.Services;
 using JiraClone.Utils.BaseService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +19,10 @@ namespace JiraClone.API.Controllers
         //list all
         [CustomAuthorize("roles", true)]
         [HttpGet]
-        public async Task<IActionResult> GetListRoles([FromQuery] Role pagingModel)
+        public async Task<IActionResult> GetListRoles([FromQuery] RoleGridPagingDto pagingModel)
         {
-            return Ok(await BaseService.FilterPaged<Role, RoleGridDto>(pagingModel));
+            var predicates = pagingModel.GetPredicates();
+            return Ok(await BaseService.FilterPagedAsync<Role, RoleGridDto>(pagingModel, predicates.ToArray()));
         }
 
         //detail
@@ -30,7 +30,7 @@ namespace JiraClone.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRoleById(int id)
         {
-            return Ok(await _roleService.GetById(id));
+            return Ok(await BaseService.FindAsync<Role, RoleDetailDto>(id));
         }
 
         //create
@@ -38,7 +38,7 @@ namespace JiraClone.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(RoleCreateDto roleCreateDto)
         {
-            await _roleService.CreateAsync<Role, RoleCreateDto>(roleCreateDto);
+            await BaseService.CreateAsync<Role, RoleCreateDto>(roleCreateDto);
             return Ok();
         }
 
@@ -47,7 +47,7 @@ namespace JiraClone.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRole(int id, RoleUpdateDto roleUpdateDto)
         {
-            await _roleService.UpdateAsync<Role, RoleUpdateDto>(id, roleUpdateDto);
+            await BaseService.UpdateAsync<Role, RoleUpdateDto>(id, roleUpdateDto);
             return Ok(true);
         }
 
@@ -55,7 +55,7 @@ namespace JiraClone.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _roleService.DeleteAsync(id);
+            await BaseService.DeleteAsync<Role, int>(id);
             return Ok(true);
         }
 
@@ -71,7 +71,7 @@ namespace JiraClone.API.Controllers
             try
             {
                 var roleIds = ids.Split(',').Select(x => Convert.ToInt32(x)).ToArray();
-                await _roleService.DeleteAsync<Role, int>(roleIds);
+                await BaseService.DeleteAsync<Role, int>(roleIds);
                 return Ok(true);
             }
             catch (FormatException ex)

@@ -1,9 +1,8 @@
+using AutoMapper;
 using JiraClone.Data;
 using JiraClone.Service.Profiles;
-using JiraClone.Service.Services;
 using JiraClone.Utils.BaseService;
 using JiraClone.Utils.Repository;
-using JiraClone.Utils.UnitOfWork;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -15,28 +14,15 @@ builder.Services.AddDbContext<JiraCloneDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("MainConnectionString"))
 );
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddAutoMapper(typeof(RoleService));
-AutoMapperConfig.RegisterMappings(builder.Services);
+builder.Services.AddAutoMapper(typeof(BaseService));
 
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
+builder.Services.AddScoped<BaseService>();
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -47,7 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors();
+app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 
 app.UseHttpsRedirection();

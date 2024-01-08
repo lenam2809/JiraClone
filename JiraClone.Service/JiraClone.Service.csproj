@@ -7,15 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Profiles\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="ErrorOr" Version="1.1.0" />
+    <PackageReference Include="FluentValidation" Version="11.7.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\JiraClone.Data\JiraClone.Data.csproj" />
+    <ProjectReference Include="..\JiraClone.Utils.BaseService\JiraClone.Utils.BaseService.csproj" />
+    <ProjectReference Include="..\JiraClone.Utils.Repository\JiraClone.Utils.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

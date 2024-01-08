@@ -14,8 +14,8 @@ namespace JiraClone.Data
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using var serviceScope = serviceProvider.CreateScope();
-            var jWTServices = serviceScope.ServiceProvider.GetService<IJWTServices>();
-            jWTServices.GetService();
+            //var jWTServices = serviceScope.ServiceProvider.GetService<IJWTServices>();
+            //jWTServices.GetService();
             var context = serviceScope.ServiceProvider.GetService<JiraCloneDbContext>();
 
 

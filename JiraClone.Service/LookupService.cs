@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using JiraClone.Data;
+using JiraClone.Service.Dtos.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,6 @@ namespace JiraClone.Service
 {
     public class LookupService
     {
-        public LookupService(EPSRepository repository, IMapper mapper) : base(repository, mapper)
-        {
-
-        }
-
         private List<UnitTreeDto> BuildTree(IEnumerable<UnitTreeDto> allUnits, int? rootUnit = null)
         {
             var tree = new List<UnitTreeDto>();

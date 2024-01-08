@@ -17,17 +17,17 @@ namespace JiraClone.Data.Entities
         }
 
         [StringLength(250)]
-        public string FullName { get; set; }
-        public bool IsAdministrator { get; set; }
-        public int Status { get; set; }
-        public DateTime? DeletedDate { get; set; }
-        public int? DeletedUserId { get; set; }
-        public virtual User DeletedUser { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public string FullName { get; init; }
+        public bool IsAdministrator { get; init; }
+        public int Status { get; init; }
+        public DateTime? DeletedDate { get; init; }
+        public int? DeletedUserId { get; init; }
+        public virtual User DeletedUser { get; init; }
+        public DateTime CreatedDate { get; init; }
+        public DateTime ModifiedDate { get; init; }
         [InverseProperty("User")]
-        public virtual ICollection<GroupUser> GroupUsers { get; set; }
+        public virtual ICollection<GroupUser> GroupUsers { get; init; }
         [InverseProperty("User")]
-        public virtual ICollection<UserDetail> UserDetails { get; set; }
+        public virtual ICollection<UserDetail> UserDetails { get; init; }
     }
 }

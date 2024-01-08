@@ -1,0 +1,60 @@
+﻿<h3>Paged Data Display</h3>
+
+<table class="table">
+    <thead>
+        <!-- Your table headers -->
+    </thead>
+    <tbody>
+        @foreach (var item in PagedData?.Items)
+        {
+            <tr>
+                <!-- Display item properties -->
+                <td>@item.Property1</td>
+                <td>@item.Property2</td>
+                <!-- Add more columns for other properties -->
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <button disabled="@IsPreviousDisabled" @onclick="LoadPreviousPage">Previous</button>
+    <span>@CurrentPage</span>
+    <button disabled="@IsNextDisabled" @onclick="LoadNextPage">Next</button>
+</div>
+
+@code {
+    RoleGridPagingDto<RoleGridDto> PagedData;
+    int CurrentPage = 1;
+    int PageSize = 10; // Set your desired page size
+    bool IsPreviousDisabled => CurrentPage == 1;
+    bool IsNextDisabled => PagedData?.TotalItems <= CurrentPage * PageSize;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPagedData();
+    }
+
+    private async Task LoadPagedData()
+    {
+        PagedData = await ProductService.GetPagedResultAsync(CurrentPage, PageSize);
+    }
+
+    private async Task LoadPreviousPage()
+    {
+        if (!IsPreviousDisabled)
+        {
+            CurrentPage--;
+            await LoadPagedData();
+        }
+    }
+
+    private async Task LoadNextPage()
+    {
+        if (!IsNextDisabled)
+        {
+            CurrentPage++;
+            await LoadPagedData();
+        }
+    }
+}

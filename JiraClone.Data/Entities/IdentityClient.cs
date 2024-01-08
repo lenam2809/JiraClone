@@ -11,17 +11,17 @@ namespace JiraClone.Data.Entities
     {
         [Key]
         [StringLength(900)]
-        public string IdentityClientId { get; set; }
+        public string IdentityClientId { get; init; }
         [Required]
         [StringLength(100)]
-        public string Description { get; set; }
+        public string Description { get; init; }
         [Required]
         [StringLength(2000)]
-        public string SecretKey { get; set; }
-        public int ClientType { get; set; }
-        public bool IsActive { get; set; }
-        public int RefreshTokenLifetime { get; set; }
+        public string SecretKey { get; init; }
+        public int ClientType { get; init; }
+        public bool IsActive { get; init; }
+        public int RefreshTokenLifetime { get; init; }
         [StringLength(1000)]
-        public string AllowedOrigin { get; set; }
+        public string AllowedOrigin { get; init; }
     }
 }

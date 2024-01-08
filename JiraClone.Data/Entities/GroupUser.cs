@@ -13,14 +13,14 @@ namespace JiraClone.Data.Entities
         public GroupUser()
         {
         }
-        public int Id { get; set; }
-        public int GroupId { get; set; }
+        public int Id { get; init; }
+        public int GroupId { get; init; }
         [ForeignKey("GroupId")]
         [InverseProperty("GroupUsers")]
-        public virtual Group Group { get; set; }
-        public int UserId { get; set; }
+        public virtual Group Group { get; init; }
+        public int UserId { get; init; }
         [ForeignKey("UserId")]
         [InverseProperty("GroupUsers")]
-        public virtual User User { get; set; }
+        public virtual User User { get; init; }
     }
 }

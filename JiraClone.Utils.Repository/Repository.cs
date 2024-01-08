@@ -1,4 +1,6 @@
-﻿using JiraClone.Utils.Repository.Helpers;
+﻿using JiraClone.Data;
+using JiraClone.Data.Entities;
+using JiraClone.Utils.Repository.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

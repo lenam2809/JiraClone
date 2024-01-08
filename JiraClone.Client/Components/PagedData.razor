@@ -55,7 +55,6 @@
             if (response.IsSuccessStatusCode)
             {
                 // Deserialize the response content
-                Items = await response.Content.ReadAsAsync<RoleGridDto>(); // Change RoleGridDto to your actual DTO
 
                 // Process the retrieved data (content)
                 // Do something with the retrieved data

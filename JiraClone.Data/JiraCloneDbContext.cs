@@ -22,7 +22,6 @@ namespace JiraClone.Data
         public JiraCloneDbContext(DbContextOptions<JiraCloneDbContext> options)
             : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public virtual DbSet<IdentityClient> IdentityClients { get; set; }
@@ -30,15 +29,16 @@ namespace JiraClone.Data
         public virtual DbSet<UserDetail> UserDetail { get; set; }
         public virtual DbSet<GroupUser> GroupUser { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-4H2CDN2\\SQLEXPRESS;Database=JiraCloneDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
